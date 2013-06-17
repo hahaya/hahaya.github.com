@@ -21,12 +21,8 @@ title:  blog move to github
   
 ### 四、学习 ###
 #### 1. Git/GitHub/GitHub Pages ####
-相信大家对*Git*和*GitHub*多少有些了解，在此就不多做介绍了，如果有不熟悉的童鞋可以参考下我下面提供的学习地址。  
+相信大家对*Git*和*GitHub*多少有些了解，在此就不多做介绍了，如果有不熟悉的童鞋可以google下相关学习资料。  
 *GitHub Pages*是*GitHub*提供的托管服务，可以建立自己的主页，当然如果你有域名可以指向这里。 
-  
-***参考资料***  
-[GotGitHub](http://www.worldhello.net/gotgithub/)  
-  
   
   
   
