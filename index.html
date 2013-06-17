@@ -1,0 +1,36 @@
+---
+layout: master
+title: 首页
+full_posts: 3
+---
+
+<div class='home-box' id='home-left'>
+  <h2><a href='atom.xml' class='float-right'
+      ><img src='/images/subscribe-icon.gif' alt='Subscribe'/></a
+      >最新博客（<a href='/blog.html'>更多</a>）</h2>
+  
+{% for post in site.posts limit:page.full_posts %}
+  <div class='post'>
+    <span class='date'>{{post.date | date_to_string}}</span>
+    <h1><a href='{{post.url}}'>{{post.title}}</a></h1>
+    <div class='body'>{{post.content}}</div>
+    <!-- 使用Disqus评论插件 -->
+    <!-- <a href='{{posts.url}}#disqus_thread'>View Comments</a> -->
+  </div>
+{% endfor %}
+
+</div>
+
+<div class='home-box' id='home-right'>
+  <h2>联系方式</h2>
+  <div class='sidebar'>
+    <div class="sidebar-item">
+    <dl>
+      <dt>邮件：</dt>
+      <dd> hahayacoder@gmail.com </dd>
+    </dl>
+
+    </div>
+  </div>
+
+</div>
