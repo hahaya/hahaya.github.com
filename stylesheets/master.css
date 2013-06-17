@@ -51,7 +51,7 @@ a:visited {
 #header h1 a {
 	margin-top: 10px;
 	display: block;
-	background: url(/images/title.png) no-repeat top left;
+	background: url(/images/my_title.png) no-repeat top left;
 	width: 405px;
 	height: 80px;
 	text-indent: -999em;
