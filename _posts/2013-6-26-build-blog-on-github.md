@@ -61,6 +61,10 @@ GitHub是个神奇的发明，将代码和社区联系在一起。GitHub是现�
 1. 在下载了别人的博客模板后，经过自己的修改，上传到Github后，不能生成对应的网页，有可能是修改得不正确。如果不确定自己修改得是否正确，那么就需要自己在本地预览，确保没有错误后再上传到Github。  
 
 2. 想要本地预览，就需要使用jekyll生成静态网站，在终端下执行下面的命令安装jekyll,当然先需要安装jekyll的依赖包。  
+		sudo apt-get install ruby1.9.1-dev
+		sudo apt-get install rdiscount
+		sudo apt-get install RedCloth
+		sudo apt-get install jekyll
 
 3. 使用jekyll创建网站，会在网站根目录下生成_site目录，上传到Github中时，请先删除_site目录。生成成功后，使用jekyll作为内置的Web服务器（默认在端口4000开启Web服务）
 
