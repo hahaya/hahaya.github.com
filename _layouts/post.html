@@ -1,0 +1,116 @@
+---
+layout: default
+---
+
+<article id="post">
+	<a href="#" class="icon-fullscreen r" title="点击全屏显示"></a>
+	<div class="c9">
+		分类：
+			{%for cg in page.categories%}
+			<a href="/category.html#{{cg}}">{{cg}}</a>
+			{%if forloop.index < forloop.length %}
+			,
+			{%endif%}
+			{%endfor%}
+		&emsp;&emsp;&emsp;&emsp;
+		标签：{{ page.tags | join: ', ' }}
+		&emsp;&emsp;&emsp;&emsp;
+		<time date="{{ page.date }}">{{ page.date|date: "%Y-%m-%d"}}</time>
+	</div>
+
+	{{ content }}
+
+	<div class="eof"><b>---------------------------------------------- the end ----------------------------------------------</b></div>
+
+	<hr />
+	<div class="page fix">
+		{%if page.previous%}
+		<span class="prev"><a href="{{page.previous.url}}">←《{{page.previous.title}}》</a></span>
+		{%endif%}
+		{%if page.next%}
+		<span class="next"><a href="{{page.next.url}}">《{{page.next.title}}》→</a></span>
+		{%endif%}
+	</div>
+	<hr />
+</article>
+
+
+<!--Disqus begin-->
+<div id="comment">
+	<div id="disqus_thread"></div>
+	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+<!--Disqus end-->
+
+<script src="/js/jquery-min.js"></script>
+<script src="/js/Fullscreen.js"></script>
+<script type="text/javascript">
+$(function() {
+	var global = window;
+
+	// ============== Disqus 定义 ==============
+	(function() {
+		global.disqus_shortname = 'hahaya';
+		$('<script type="text/javascript" async ' +
+		  'src="http://' + global.disqus_shortname + '.disqus.com/embed.js">' +
+		  '<\/script>').appendTo('head');
+	})();
+
+
+	// =============== 全屏显示 ==================
+	(function() {
+		var icon = $( 'a.icon-fullscreen' ),
+			fs, fsCallback;
+		
+		fsCallback = function(isFullscreen) {
+				if (isFullscreen) {
+					icon.addClass('expand').attr('title', 'ESC 退出全屏');
+				}
+				else {
+					icon.removeClass('expand').attr('title', '点击全屏显示');
+				}
+			};
+			
+		fs = new Fullscreen({
+				element: $('#post'),
+				noSafari: true,
+				callback: fsCallback
+			});
+
+		if (fs.fullscreenEnabled) {
+			icon.on('click', function() {
+				fs.toggleFullscreen();
+				return false;
+			});
+		}
+		else {
+			icon.hide();
+		}
+	})();
+
+
+	// ============== 目录提取 ===============
+	(function() {
+		// 设置无目录时，不显示
+		if (!parseInt('{{page.list}}', 10)) {
+			return;
+		}
+
+		var dom = $('<fieldset id="catalogue"><legend>目录</legend></fieldset>'),
+			count = 0;
+		
+		$('#post').find('h2,h3,h4,h5').each(function() {
+			var name = 'catalogue_' + count++;
+			dom.append('<div class="txt_' + this.tagName + '">' +
+				'<a href="#' + name + '">' +
+					this.innerHTML +
+				'</a></div>');
+			this.id = name;
+		});
+
+		dom.appendTo('body');
+	})();
+});
+</script>
+
