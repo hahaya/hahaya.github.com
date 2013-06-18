@@ -22,7 +22,7 @@ title: 使用Github Pages搭建个人博客
 GitHub是个神奇的发明，将代码和社区联系在一起。GitHub是现在最流行的代码仓库，很多大公司将项目放在上面，为了使项目更方便的被人理解，当然少不了介绍页面，甚至会需要完整的文档站。Github替你想到了这一点，它提供了个人主页和项目主页两种服务。  
 
 ### 个人主页和项目主页 ###
-个人主页：Github为每一个用户分配了一个二级域名`username.github.com`，用户为自己的二级域名创建主页很简单，只需要在Github下创建一个名为`username.github.com`的版本库，并向其master分支提交网站静态页面即可，其中网站首页为index.html。
+个人主页：Github为每一个用户分配了一个二级域名`username.github.com`，用户为自己的二级域名创建主页很简单，只需要在Github下创建一个名为`username.github.com`的版本库，并向其master分支提交网站静态页面即可，其中网站首页为index.html。  
 项目主页：为项目启用项目主页很简单，只需要在项目版本库中创建一个名为`gh-pages`的分支，并向其中添加静态网页即可，通过网址`http://username.github.com/helloworld`（假设项目名为helloworld）访问。  
 
 
