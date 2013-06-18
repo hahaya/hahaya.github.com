@@ -10,7 +10,7 @@ code{font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
 pre code{line-height:100%;background:none;border:none;}
 h1{font-size:2em;margin:0.8em 0;}
 h2{font-size:1.6em;margin:0.5em 0;}
-h3{font-size:1.3em;margin:0.2em 0;bgcolor=red}
+h3{font-size:1.3em;margin:0.2em 0;}
 h4{font-size:1.05em;margin:0;}
 p{margin:1em 0;}
 blockquote{border-left:3px solid #ccc;margin:1em 0.5em;padding-left:0.3em;}
