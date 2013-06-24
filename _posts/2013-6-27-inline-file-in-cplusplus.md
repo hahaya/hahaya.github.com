@@ -19,7 +19,7 @@ inl文件是内联函数的源文件。内联函数通常在C++头文件中实�
 
 在Google的C++代码编程规范中也说到了inl文件，需要阅读的同学可以从这里阅读Google的C++代码规范:[Google C++ Style Guide](http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml)。  
 
-### 简单示例子 ###
+### 简单示例 ###
 {%highlight c++%}
 //inl_demo.h
 #ifndef _INL_DEMO_H_
