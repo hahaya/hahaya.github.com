@@ -3,7 +3,7 @@ layout: post
 title: 使用Github Pages搭建个人独立博客
 summary: Github是一个伟大的说明，使用Github Pages很容易搭建一个个人博客，接下来一步一步搭建属于自己的独立博客，希望能给你一些帮助。
 categories: [jekyll]
-tags: [github, git, jekyll]
+tags: [jekyll]
 published: true
 ---
 
