@@ -2,7 +2,7 @@
 layout: post
 title:  blog move to github
 summary: 早就受不了CSDN博客的条条框框，终于下定决心将博客从CSDN转移过来了，过程是艰难的，但是当习惯后，你会发现GitHub + Jekyll + Markdown真是完美的搭配，享受这一切带来的乐趣吧~
-categories: [github, git, jekyll]
+categories: [jekyll]
 tags: [github, git, jekyll]
 published: true
 ---
@@ -29,7 +29,10 @@ published: true
 ### 四、学习 ###
 #### 1. Git/GitHub/GitHub Pages ####
 相信大家对*Git*和*GitHub*多少有些了解，在此就不多做介绍了，如果有不熟悉的童鞋可以google下相关学习资料。  
-*GitHub Pages*是*GitHub*提供的托管服务，可以建立自己的主页，当然如果你有域名可以指向这里。 
+*GitHub Pages*是*GitHub*提供的托管服务，可以建立自己的主页，当然如果你有域名可以指向这里。  
+  
+***参考资料***
+[GotGitHub](http://www.worldhello.net/gotgithub/)
   
   
   
