@@ -17,7 +17,7 @@ inl文件是内联函数的源文件。内联函数通常在C++头文件中实�
 
 对于比较大的工程来说，出于管理方面的考虑，模板函数、模板类的声明一般放在一个或少数几个头文件中，然后将其定义部分放在inl文件中。这样可以让工程结构清晰、明了。  
 
-在Google的C++代码编程规范中也说到了inl文件，需要阅读的同学可以从这里阅读Google的C++代码规范:[]()。  
+在Google的C++代码编程规范中也说到了inl文件，需要阅读的同学可以从这里阅读Google的C++代码规范:[Google C++ Style Guide](http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml)。  
 
 ### 简单示例子 ###
 {%highlight c++%}
