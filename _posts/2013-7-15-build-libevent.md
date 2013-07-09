@@ -23,6 +23,7 @@ libevent是一个事件触发、异步事件的网络库，是一个轻量级的
 
 ### 三、libevent的跨平台 ###
 在处理大量socket连接时，使用select模型并不高效，所以各个系统提供了处理大量socket连接的解决方案:  
+
 - Linux下的epoll  
 - BSD下的kqueue  
 - Solaris下的evports  
@@ -41,7 +42,7 @@ libevent是一个事件触发、异步事件的网络库，是一个轻量级的
 编译完成后会在`/home/hahaya/libevent`目录下发现lib、include、bin三个目录，可以打开看看里面都有些什么东西。
 
 ### 五、libevent组成部分 ###
-###### 1. libevent组件 ###### 
+#### 1. libevent组件 #### 
 - evutil：用于抽象不同平台网络实现差异的通用功能  
 - event和evelibeventnt_base：libevent的核心，为各种平台特定的、基于事件的非阻塞IO后端提供抽象API，让程序可以知道套接字何时已经准备好，可以读或者写，并且处理基本的超时功能，检测OS信号  
 - bufferevent：为libevent基于事件的核心提供使用更方便的封装。除了通知程序套接字已经准备好读写之外，还让程序可以请求缓冲的读写操作，可以知道何时IO已经真正发生  
@@ -50,8 +51,9 @@ libevent是一个事件触发、异步事件的网络库，是一个轻量级的
 - evdns：一个简单的DNS客户端/服务端实现  
 - evrps：一个简单的RPC实现
 
-###### 2. libevent库 ######
+#### 2. libevent库 ####
 安装配置好libevent后，在`/home/hahaya/libevent/lib`目录下，会默认生成下列库  
+
 - libevent_core：所有核心的事件和缓冲功能，包含了所有的event_base、evbuffer、bufferevent和工具函数  
 - libevent_extra：定义程序可能需要，也可能不需要的协议特定功能，包括HTTP、DNS、RPC  
 - libevent：这个库因为历史原因而存在，它包含libevent_core和libevent_extra的内容。不应该使用这个库，未来版本阿的libevent可能会去掉这个库  
@@ -59,8 +61,9 @@ libevent是一个事件触发、异步事件的网络库，是一个轻量级的
 - libevent_pthreads：添加基于pthread可移植线程库的线程和锁定实现。它独立于libevent_core，这样程序使用libevent时就不需要链接到pthread，除非是以多线程方式使用libevent  
 - libevent_openssl：这个库为使用bufferevent和OpenSSL进行加密的信息提供支持。它独立于libevent_core，这样程序使用libevent时就不需要链接到OpenSSL，除非是进行加密通信  
 
-###### 3. libevent头文件 #####
+#### 3. libevent头文件 ####
 libevent头文件都安装在`/home/hahaya/libevent/include/event2`目录中，头文件分为三类：  
+
 - API头文件：定义libevent公用接口，这类头文件没有特定后缀。  
 - 兼容头文件：为已废弃的函数提供兼容的头部包含定义。不应该使用这类头文件，除非是在移植较老版本libevent程序时。  
 - 结构头文件：这类头文件以相对不稳定的布局定义各种结构体。这些结构体中的一些是为了提供快速访问而暴露；一些是因为历史原因而暴露，直接依赖这类头文件中的任何结构体都会破坏程序对其他版本libevent的二进制兼容，有些是以非常难以调试的方式出现，这类头文件具有后缀_struct.h。  
