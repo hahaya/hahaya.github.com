@@ -43,7 +43,7 @@ libevent是一个事件触发、异步事件的网络库，是一个轻量级的
 编译完成后会在`/home/hahaya/libevent`目录下发现lib、include、bin三个目录，可以打开看看里面都有些什么东西。
 
 ### 五、libevent组成部分 ###
-#### 1. libevent组件 ####  
+#### 1. libevent组件    
 
 - evutil：用于抽象不同平台网络实现差异的通用功能  
 - event和evelibeventnt_base：libevent的核心，为各种平台特定的、基于事件的非阻塞IO后端提供抽象API，让程序可以知道套接字何时已经准备好，可以读或者写，并且处理基本的超时功能，检测OS信号  
