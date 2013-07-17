@@ -53,17 +53,17 @@ published: true
         --disable-gui --prefix=/usr  
         make VIMRUNTIMEDIR=/usr/share/vim/vim74a  
 
-- --with-features=huge：支持最大特性  
-- --enable-rubyinterp：启用Vim对ruby的支持  
-- --enable-pythoninterp：启用Vim对python的支持  
-- --enable-luainterp：启用Vim对lua的支持  
-- --enable-perlinterp：启用Vim对perl的支持  
-- --enable-multibyte：多字节支持 可以在Vim中输入中文  
-- --enable-sniff：Vim状态提示 提示Vim当前处于INSERT、NORMAL、VISUAL哪种模式  
-- --enable-cscope：Vim对cscope支持  
-- --disable-gui：不用编译生成图形界面版gvim  
-- --prefix=/usr：编译安装路径  
-- 更多参数执行./configure --help查看  
+        - --with-features=huge：支持最大特性  
+        - --enable-rubyinterp：启用Vim对ruby的支持  
+        - --enable-pythoninterp：启用Vim对python的支持  
+        - --enable-luainterp：启用Vim对lua的支持  
+        - --enable-perlinterp：启用Vim对perl的支持  
+        - --enable-multibyte：多字节支持 可以在Vim中输入中文  
+        - --enable-sniff：Vim状态提示 提示Vim当前处于INSERT、NORMAL、VISUAL哪种模式  
+        - --enable-cscope：Vim对cscope支持  
+        - --disable-gui：不用编译生成图形界面版gvim  
+        - --prefix=/usr：编译安装路径  
+        - 更多参数执行./configure --help查看  
 4. 在终端下执行如下命令开始安装vim  
 
         sudo make install
