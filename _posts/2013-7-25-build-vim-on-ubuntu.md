@@ -53,17 +53,17 @@ published: true
         --disable-gui --prefix=/usr  
         make VIMRUNTIMEDIR=/usr/share/vim/vim74a  
 
-        - --with-features=huge：支持最大特性  
-        - --enable-rubyinterp：启用Vim对ruby的支持  
-        - --enable-pythoninterp：启用Vim对python的支持  
-        - --enable-luainterp：启用Vim对lua的支持  
-        - --enable-perlinterp：启用Vim对perl的支持  
-        - --enable-multibyte：多字节支持 可以在Vim中输入中文  
-        - --enable-sniff：Vim状态提示 提示Vim当前处于INSERT、NORMAL、VISUAL哪种模式  
-        - --enable-cscope：Vim对cscope支持  
-        - --disable-gui：不用编译生成图形界面版gvim  
-        - --prefix=/usr：编译安装路径  
-        - 更多参数执行./configure --help查看  
+        (a) --with-features=huge：支持最大特性  
+        (b) --enable-rubyinterp：启用Vim对ruby的支持  
+        (c) --enable-pythoninterp：启用Vim对python的支持  
+        (d) --enable-luainterp：启用Vim对lua的支持  
+        (e) --enable-perlinterp：启用Vim对perl的支持  
+        (f) --enable-multibyte：多字节支持 可以在Vim中输入中文  
+        (g) --enable-sniff：Vim状态提示 提示Vim当前处于INSERT、NORMAL、VISUAL哪种模式  
+        (h) --enable-cscope：Vim对cscope支持  
+        (i) --disable-gui：不用编译生成图形界面版gvim  
+        (j) --prefix=/usr：编译安装路径  
+        (k) 更多参数执行./configure --help查看  
 4. 在终端下执行如下命令开始安装vim  
 
         sudo make install
@@ -74,8 +74,8 @@ published: true
         1. vim缺省是和vi兼容的，设置成不兼容，在`.vimrc`中添加`set nocompatible`  
         2. vim的backspace有几种工作方式，默认是和vi兼容的，同样需要修改，在`.vimrc`中添加`set backspace=indent,eol,start`  
 
-        - indent：如果使用了set indent等自动缩进，想用退格键将缩进字段删掉，必须设置这个选项，否则vim不响应退格  
-        - eol：如果在INSERT模式下，在行头想通过退格键合并两行，需要设置这个选项  
-        - start：要想删除在此次插入前的输入，需要设置这个选项  
+        (a) indent：如果使用了set indent等自动缩进，想用退格键将缩进字段删掉，必须设置这个选项，否则vim不响应退格  
+        (b) eol：如果在INSERT模式下，在行头想通过退格键合并两行，需要设置这个选项  
+        (c) start：要想删除在此次插入前的输入，需要设置这个选项  
 
 ok，大功告成，可以尝试下新版本的vim了，顺便体验下自动补全神器YouComPleteMe~
