@@ -9,7 +9,7 @@ published: true
 
 # {{ page.title }} #
 最近一段时间又偷懒了，好久没有更新文章了，好久没学习了，周末和同时Dota去了，趁现在有学习的动力更新一篇文章...  
-{{ page.summary }}
+{{ page.summary }}  
 vundle是vim bundle的简写，是vim插件管理的神器，更新方便、支持搜索、一键更新，从此只需要一个vimrc走天下，为了见识下到底有多厉害，废话不多说，操刀动工...
 
 
