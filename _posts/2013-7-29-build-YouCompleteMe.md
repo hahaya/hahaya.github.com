@@ -3,7 +3,7 @@ layout: post
 title: Linux下编译YouCompleteMe插件
 summary: 最近发现一款很好用的智能插件YouCompleteMe，YouCompleteMe是现在见过最好用的智能补全插件，支持的语言有C、C++、objective-c、python、C#等，特别好用，特别推荐。而且不像其他智能补全插件那样需要太多依赖，例如OmniCppComplete需要依赖ctag生成的tags文件。最后一点，YouCompleteMe插件的作者还在更新，很热心，我配置出现问题，然后去项目主要下留言，作者细心的回复了~
 categories: [vim]
-published: [vim]
+tags: [vim]
 published: true
 ---
 
