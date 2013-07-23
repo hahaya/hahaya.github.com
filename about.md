@@ -5,4 +5,6 @@ title: about
 
 ## Abuout Me ###
 
-I am hahaya. ~
+id: hahaya
+email: hahayacoder@gmail.com
+
