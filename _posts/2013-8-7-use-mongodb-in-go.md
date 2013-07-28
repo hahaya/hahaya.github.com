@@ -47,7 +47,7 @@ type Person struct {
 }
 
 func main() {
-    // connect to MongoDB
+    /* connect to MongoDB */
     session, err := mgo.Dial("127.0.0.1")
     if err != nil {
             fmt.Println("connect MongoDB failed...")
@@ -55,10 +55,10 @@ func main() {
         }
     defer session.Close()
 
-    // set MongoDB mode
+    /* set MongoDB mode */
     session.SetMode(mgo.Monotonic, true)
 
-    // connet to DB("test") Collection("people")
+    /* connet to DB("test") Collection("people") */
     conn := session.DB("test").C("people")
     // insert data into MongoDB
     err = conn.Insert(&Person{"hahaya", "123456"}, &Person{"sf", "111111"})
@@ -68,14 +68,14 @@ func main() {
         }
 
     result := Person{}
-    // query MongoDB
+    /* query MongoDB */
     err = conn.Find(bson.M{"name": "hahaya"}).One(&result)
     if err != nil {
             fmt.Println("query MongoDB failed...")
             os.Exit(1)
         }
 
-    // output the query from MongoDB
+    /* output the query from MongoDB *
     fmt.Println("phone", result.Phone)
 }
 {%endhighlight%}
