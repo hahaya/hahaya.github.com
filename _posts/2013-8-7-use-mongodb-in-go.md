@@ -2,8 +2,8 @@
 layout: post
 title: 使用go操作MongoDB数据库
 summary: 以前接触过MongoDB数据库，但是没有实际使用过，趁学习go的过程，尝试下使用MongoDB，在此记录下使用过程，说不定以后还会用到。
-categories: [go, MongoDB]
-tags: [go, MongoDB]
+categories: [go, mongodb]
+tags: [go, mongodb]
 published: true
 ---
 
