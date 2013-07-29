@@ -52,7 +52,7 @@ func main() {
     if err != nil {
             fmt.Println("connect MongoDB failed...")
             os.Exit(1)
-        }
+    }
     // close MongoDB
     defer session.Close()
     // set MongoDB model
@@ -64,14 +64,14 @@ func main() {
     if err != nil {
             fmt.Println("insert into MongoDB failed...")
             os.Exit(1)
-        }
+    }
     result := Person{}
     //query MongoDB
     err = conn.Find(bson.M{"name": "hahaya"}).One(&result)
     if err != nil {
             fmt.Println("query MongoDB failed...")
             os.Exit(1)
-        }
+    }
     // output the query result
     fmt.Println("phone", result.Phone)
 }
