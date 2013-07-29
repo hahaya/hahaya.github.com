@@ -35,7 +35,7 @@ MongoDB是一个高性能，开源，无模式的文档型数据库，是一个�
 package main
 
 import (
-    fmt"
+    "fmt"
     "labix.org/v2/mgo"
     "labix.org/v2/mgo/bson"
     "os"
@@ -47,29 +47,32 @@ type Person struct {
 }
 
 func main() {
+    // connect to MongoDB
     session, err := mgo.Dial("127.0.0.1")
     if err != nil {
             fmt.Println("connect MongoDB failed...")
             os.Exit(1)
         }
+    // close MongoDB
     defer session.Close()
-
+    // set MongoDB model
     session.SetMode(mgo.Monotonic, true)
-
+    // connect DB and Collection in MongoDB
     conn := session.DB("test").C("people")
+    // insert data into MongoDB
     err = conn.Insert(&Person{"hahaya", "123456"}, &Person{"sf", "111111"})
     if err != nil {
             fmt.Println("insert into MongoDB failed...")
             os.Exit(1)
         }
-
     result := Person{}
+    //query MongoDB
     err = conn.Find(bson.M{"name": "hahaya"}).One(&result)
     if err != nil {
             fmt.Println("query MongoDB failed...")
             os.Exit(1)
         }
-
+    // output the query result
     fmt.Println("phone", result.Phone)
 }
 {%endhighlight%}
