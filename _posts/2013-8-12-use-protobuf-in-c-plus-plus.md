@@ -29,7 +29,7 @@ protobuf全称为google protocol buffer，是google内部使用的一种数据�
 ### 三、生成protobuf协议文件 ###
 执行命令`vim msg.proto`新建一个名为msg.proto的文件，并将其打开，在msg.proto中输入如下内容：  
 
-{%highlight proto%}
+{%highlight protobuf%}
 package demo;
 
 message msg
@@ -62,7 +62,7 @@ int main(int argc, char *argv[]){
     string in_data;
     msg_test.SerializeToString(&in_data);
     cout << "format:" << in_data << endl;
-    
+
     //将信息从字符串中反格式化出来（读操作）
     demo::msg msg_encoding;
     msg_encoding.ParseFromString(in_data);
