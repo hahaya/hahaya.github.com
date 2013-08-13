@@ -12,7 +12,7 @@ published: true
 
 ### 一、安装protobuf ###
 要在go中使用protobuf，首先需要安装go版本的protobuf，安装过程十分简单，只需要在终端下执行`go get code.google.com/p/goprotobuf/{proto,protoc-gen-go}`进行proto和protoc-gen-go的安装，默认安装的目录是$GOBIN。  
-Ps：由于自己电脑系统时间的问题，导致一直不能下载，最后修改系统就ok了。
+Ps：由于自己电脑系统时间的问题，导致一直不能下载，最后修改系统时间就ok了。
 
 ### 二、生成protobuf协议文件 ###
 执行命令vim msg.proto新建一个名为msg.proto的文件，并将其打开，在其中输入如下内容：  
