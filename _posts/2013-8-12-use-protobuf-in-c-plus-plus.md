@@ -41,7 +41,7 @@ message msg
 }
 {%endhighlight%}
   
-输入完成后，保存退出，在终端下执行`protoc -I=. --cpp_out=. msg.proto`生成对应的msg.pb.h和msg.pb.cpp文件
+输入完成后，保存退出，在终端下执行`protoc --cpp_out=. msg.proto`生成对应的msg.pb.h和msg.pb.cpp文件
 
 ### 四、在C++中使用protobuf ###
 执行命令`vim protobuf_test.cc`新建一个名为protobuf_test.cc的C++源文件，并将其打开，在其中输入如下内容：  
