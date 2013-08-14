@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 使用protobuf在go和c++程序中做数据交换
+title: 使用protobuf进行go和c++程序的数据交换
 summary: 最近在使用go和c++做一个小程序玩玩，由于涉及到数据交换，自己也不想去定义数据格式，于是就使用了goole protocol buffer(简称protobuf),protobuf使用起来很方便，但是在使用的过程中也遇到了一些问题，于是重新写了一个小程序模拟go和c++之间的通信，并记录下容易出问题的地方。其中c++写客户端，go用来写服务端，好了，那么开始吧~
 categories: [go, c++]
 tags: [go, c++]
@@ -100,7 +100,7 @@ func main() {
 }
 {%endhighlight%}
   
-Ps:在处理连接的goroutine中，最开始创建了128个byte接收数据，但是接收到的数据并没有填满128个byte，所以需要根据接受到的数据长度，取出真正接受到的数据内容，再来反序列化，否则会判断为不符合protobuf规范
+Ps:在处理连接的goroutine中，最开始创建了128个byte接收数据，但是接收到的数据并没有填满128个byte，所以需要根据接收到的数据长度，取出真正接受到的数据内容，再来反序列化，否则会判断为不符合protobuf规范
 
 ### 二、c++客户端 ###
 为了方便的演示，我将连接的服务端ip和端口port都固定写死了,而且没有做错误判断，因为重点是演示protobuf的数据交换，c++客户端代码如下：  
@@ -159,3 +159,6 @@ int main(int argc, char *argv[]){
 {%endhighlight%}
   
 Ps:通过程序中string len为26，而buff len为1，可以得出两者不相等，产生这个的原因是string中含有\0，而c风格字符串以\0结尾，所以在发送数据send时，一定要指定发送的长度(在Qt中，提供不指定长度发送的函数，这样发送数据只会发送\0前面的部分)。并且发送的数据长度一定要通过string类中的length求，而不能使用strlen得出长度。
+
+### 四、结束 ###
+程序已经写完了，启动服务端，然后启动客户端，如果看见服务端输出了MsgId、MsgInfo、MsgFrom的内容，那么恭喜你，使用protobuf进行go和c++程序的数据交换成功。
