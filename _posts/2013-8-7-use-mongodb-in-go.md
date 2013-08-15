@@ -23,7 +23,7 @@ MongoDB是一个高性能，开源，无模式的文档型数据库，是一个�
         cd ~/mongodb-linux-i686-2.4.5  
         bin/mongod  
 
-打开~/.profile文件，在文件内添加`mongodb-linux-i686-2.4.5`，然后执行`source .profile`命令，那么下次就不需要切换到bin目录下启动数据库，直接在终端下执行`mongod`来启动数据库。  
+打开~/.profile文件，在文件内添加`export PATH=$PATH:/home/hahaya/mongodb-linux-i686-2.4.5/bin`，然后执行`source .profile`命令，那么下次就不需要切换到bin目录下启动数据库，直接在终端下执行`mongod`来启动数据库。  
 
 ### 二、安装mgo ###
 目前go支持MongoDB最好的驱动就是mgo，这个驱动目前最有可能成为官方的pkg。mgo是MongoDB的一款强大的go语言驱动，支持集群，自动服务器磐机切换，灵活的序列化等功能。mgo官网地址:`http://labix.org/mgo`。安装mgo前需要先安装Bazaar，因为mgo是通过Bazaar来管理的，在终端下执行`sudo apt-get install bzr`安装Bazaar，安装mgo很简单，只需终端下执行`go get labix.org/v2/mgo`即可完成mgo的安装。  
