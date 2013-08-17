@@ -52,7 +52,7 @@ published: true
 1. 前面已经在Linux下成功编译、运行cocos2d-x程序，那么接下来要进行的是在Linux下编译，Android程序。  
 2. 前面已经安装好JDK，并且已经配置好Android SDK和Android NDK等各种环境变量。  
 3. 打开eclipse，在菜单中依次选择`Window -> Preferences -> Android`，设置该选项卡中的SDK Location(/home/hahaya/android/adt-bundle-linux-x86-20130522/sdk)，在下面可以看到Android SDK的版本信息，最后点击Apply，然后OK。  
-4. 在菜单中依次选择`File -> Import... -> Android -> Existing Android Code Into Workspace ->Next`，然后选择HelloCpp所在路径的proj.android工程(me/hahaya/cocos2d-x-2.1.4/samples/Cpp/HelloCpp/proj.android),最后点击Finish。  
+4. 在菜单中依次选择`File -> Import... -> Android -> Existing Android Code Into Workspace ->Next`，然后选择HelloCpp所在路径的proj.android工程(/hahaya/cocos2d-x-2.1.4/samples/Cpp/HelloCpp/proj.android),最后点击Finish。  
 5. 这里会发现工程报错，是因为还需要导入android cocos2d-x所需要的lib工程。依次在菜单中选择`File -> Import... -> Android -> Existing Android Code Into Workspace`，然后选择android lib工程所在的路径(/home/hahaya/cocos2d-x-2.1.4/cocos2dx/platform/android)。  
 6. 选中项目，然后鼠标右键，接着Run As, 接着选择Android Application，会弹出是否添加Android模拟器对话框，点击OK，接着`Manager... -> New`，填写AVD Name，选择Device和Target，填写SD Card中的Size，一定要勾选Emulation Options中的Use Host GPU，否则在Android模拟器中运行cocos2d-x程序时会崩溃，eclipse中报模拟器不支持OpenGLES 2.0之类的错误，其余选项保持默认，最后点击OK按钮。  
 7. 再次Run As Android Application，会发现eclipse的Console中提示`bash /home/hahaya/cocos2d-x-2.1.4/samples/Cpp/HelloCpp/proj.android/build_native.sh 
