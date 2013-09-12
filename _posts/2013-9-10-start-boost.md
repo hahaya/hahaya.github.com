@@ -29,7 +29,7 @@ published: true
 ### 三、测试boost是否安装成功 ###
 1. 新建一个ccp文件，输入如下内容:  
 
-{%highlght cpp%}
+{%highlight cpp%}
 #include <iostream>
 #include <boost/timer.hpp>
 
