@@ -20,7 +20,7 @@ hahaya-vim的安装和使用很简单，只需在终端中依次执行如下命�
         vim
         :BundleInstall(在vim命令模式下执行)
 
-* 备注 *：  
+###### 备注 ######  
 1. `.vimrc`在linux下是隐藏文件  
 2. YouCompleteMe插件需要编译才能使用，参考我之前的文章，飞机票[http://hahaya.github.io/2013/07/29/build-YouCompleteMe.html](http://hahaya.github.io/2013/07/29/build-YouCompleteMe.html)  
 
