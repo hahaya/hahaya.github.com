@@ -82,7 +82,7 @@ int main(int argc, char *argv[])
 
 		Test Destructor.
 
-从输出对象只被析构了一次，这是我们想要的结果，那么enable_shared_from_this<T>模板类到底是如何工作的了？请看下文分解~
+从输出对象只被析构了一次，这是我们想要的结果，因此enable_shared_from_this<T>模板类的作用是：用来作为一个基类，它允许从一个成员函数中获得一个当前对象的shared_ptr。那么enable_shared_from_this<T>模板类到底是如何工作的了？请看下文分解~
 
 ### enable_shared_from_this模板类实现 ###
 打开enable_shared_from_this.hpp文件，会发现enable_shared_from_this<T>模板类的实现如下：  
