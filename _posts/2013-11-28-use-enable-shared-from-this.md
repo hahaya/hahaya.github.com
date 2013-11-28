@@ -42,7 +42,8 @@ int main(int argc, char *argv[])
 }
 {%endhighlight%}  
 
-程序输出：
+程序输出：  
+
 		Test Destructor.  
 		Test Destructor.  
 
@@ -77,7 +78,8 @@ int main(int argc, char *argv[])
 }
 {%endhighlight%}  
 
-程序输出：
+程序输出：  
+
 		Test Destructor.
 
 从输出对象只被析构了一次，这是我们想要的结果，那么enable_shared_from_this<T>到底是如何工作的了？请看下文分解~
