@@ -13,7 +13,7 @@ published: true
 ### 题目 ###
 原文:  
 Implement an algorithm to determine if a string has all unique characters. What if you can not use additional data structures?  
-译文:
+译文:  
 实现一个算法判断一个字符串中的每个字符是否唯一(即判断字符串中时候出现重复字符)，不使用额外的数据结构(只使用基本数据结构)
 
 ### 解答 ###
@@ -88,8 +88,8 @@ bool isUniqueChar3(const std::string &str)
 
 ### 链接 ###
 全书结题目录:  
-[http://hahaya.github.io/2013/12/26/Cracking-the-Coding-Interview.html](http://hahaya.github.io/2013/12/26/Cracking-the-Coding-Interview.html)
+[http://hahaya.github.io/2013/12/26/Cracking-the-Coding-Interview.html](http://hahaya.github.io/2013/12/26/Cracking-the-Coding-Interview.html)  
 全书代码:  
-[https://github.com/hahaya/Cracking_the_Coding_Interview](https://github.com/hahaya/Cracking_the_Coding_Interview)
+[https://github.com/hahaya/Cracking_the_Coding_Interview](https://github.com/hahaya/Cracking_the_Coding_Interview)  
 本题代码:  
 [https://github.com/hahaya/Cracking_the_Coding_Interview/blob/master/code/1.1.cpp](https://github.com/hahaya/Cracking_the_Coding_Interview/blob/master/code/1.1.cpp)
