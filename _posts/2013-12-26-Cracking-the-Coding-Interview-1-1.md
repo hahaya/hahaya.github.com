@@ -87,7 +87,7 @@ bool isUniqueChar3(const std::string &str)
 通过这个题目会发现位操作可以用来节省空间的使用量，后面我会写一篇文章介绍一些常用的位操作。  
 
 ### 链接 ###
-全书结题目录:  
+全书解题目录:  
 [http://hahaya.github.io/2013/12/26/Cracking-the-Coding-Interview.html](http://hahaya.github.io/2013/12/26/Cracking-the-Coding-Interview.html)  
 全书代码:  
 [https://github.com/hahaya/Cracking_the_Coding_Interview](https://github.com/hahaya/Cracking_the_Coding_Interview)  
