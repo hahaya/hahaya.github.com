@@ -10,14 +10,14 @@ published: true
 # {{page.title}} #
 {{page.summary}}
 
-### 题目 ###
+### 一、题目 ###
 原文:  
 Implement an algorithm to determine if a string has all unique characters. What if you can not use additional data structures?  
 译文:  
 实现一个算法判断一个字符串中的每个字符是否唯一(即判断字符串中时候出现重复字符)，不使用额外的数据结构(只使用基本数据结构)
 
-### 解答 ###
-key point:在你开始解答这个题目之前，你可以问面试官，这个字符串的字符集有多大？是ASCII吗？或者是26个英文字母？因为在不同的情况下，可能会有不解决方案。
+### 二、解答 ###
+**key point**:在你开始解答这个题目之前，你可以问面试官，这个字符串的字符集有多大？是ASCII吗？或者是26个英文字母？因为在不同的情况下，可能会有不解决方案。
 ##### 字符串的字符全是ASCII #####
 在这里我们假设字符串中的字符全是ASCII字符，那么最多就是256个字符了，所以我们完全可以用一个大小为256的bool数组来表示每个ASCII字符是否出现，出现这bool数组对应为的值为true，否则为false。大致的解答思路可以描述为：初始化bool数组为false，遍历字符串中的每一个字符，当bool数组对应位置的值为true，这表明该字符以前出现过，即可得出该字符串中有重复字符。否则将bool数组对应位置的值置为false，进行接下来的循环。代码实现如下：  
 
@@ -83,10 +83,10 @@ bool isUniqueChar3(const std::string &str)
 }
 {%endhighlight%}  
 
-### 总结 ###
+### 三、总结 ###
 通过这个题目会发现位操作可以用来节省空间的使用量，后面我会写一篇文章介绍一些常用的位操作。  
 
-### 链接 ###
+### 四、链接 ###
 全书解题目录:  
 [http://hahaya.github.io/2013/12/26/Cracking-the-Coding-Interview.html](http://hahaya.github.io/2013/12/26/Cracking-the-Coding-Interview.html)  
 全书代码:  
