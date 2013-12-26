@@ -11,5 +11,5 @@ published: true
 {{page.summary}}
 
 ### Chapter 1 | Arrays and Strings ###
-1.1 [Implement an algorithm to determine if a string has all unique characters. What if you can not use additional data structures?](http://hahaya.github.io/2013/12/26/Cracking-the-Coding-Interview-1-1.html)
+1.1 [Implement an algorithm to determine if a string has all unique characters. What if you can not use additional data structures?](http://hahaya.github.io/2013/12/26/Cracking-the-Coding-Interview-1-1.html)  
 1.2 
