@@ -11,5 +11,6 @@ published: true
 {{page.summary}}
 
 ### Chapter 1 | Arrays and Strings ###
-1.1 [Implement an algorithm to determine if a string has all unique characters. What if you can not use additional data structures?](http://hahaya.github.io/2013/12/26/Cracking-the-Coding-Interview-1-1.html)  
-1.2 
+1.1 [Implement an algorithm to determine if a string has all unique characters. What if you can not use additional data structures?](http://hahaya.github.io/2013/12/26/Cracking-the-Coding-Interview-1-1.html)    
+1.2 [Write code to reverse a C-Style String. (C-String means that “abcd” is represented as five characters, including the null character.)](http://hahaya.github.io/2013/12/26/Cracking-the-Coding-Interview-1-2.html)  
+1.3 
