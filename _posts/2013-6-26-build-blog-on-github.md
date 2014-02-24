@@ -44,7 +44,7 @@ GitHub是个神奇的发明，将代码和社区联系在一起。GitHub是现�
 1. 执行如下命令克隆`hahaya.github.com`版本库到本地  
 
 		git clone git@github.com:hahaya/hahaya.github.com.git
-2. 删除Github自动生成的文件,注意不要删除.git目录  
+2. 删除Github自动生成的文件(如果需要则不删除),注意不要删除.git目录  
 
 		cd hahaya.github.com		
 		git rm -r images/
@@ -70,10 +70,12 @@ GitHub是个神奇的发明，将代码和社区联系在一起。GitHub是现�
 
 2. 想要本地预览，就需要使用jekyll生成静态网站，在终端下执行下面的命令安装jekyll,当然先需要安装jekyll的依赖包。  
 
-		sudo apt-get install ruby1.9.1-dev
-		sudo apt-get install rdiscount
-		sudo apt-get install RedCloth
-		sudo apt-get install jekyll
+		sudo apt-get install ruby1.9.1-dev  
+		sudo gem source --remove http://rubygems.org/  
+		sudo gem source -a http://ruby.taobao.org/  
+		sudo gem install rdiscount  
+		sudo gem install RedCloth  
+		sudo gem install jekyll  
 
 3. 使用jekyll创建网站，会在网站根目录下生成_site目录，上传到Github中时，请先删除_site目录。生成成功后，使用jekyll作为内置的Web服务器（默认在端口4000开启Web服务）
 
