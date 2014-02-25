@@ -1,0 +1,52 @@
+body {
+	background: url(/images/bg.png) repeat;
+	color: #333;
+	font: 16px/1.5 "微软雅黑","Arial","Helvetica","sans-serif";
+	width: 96%; margin: 0 auto;
+}
+ul { list-style: none;}
+h2 {
+	font-size: 22px;
+}
+h1, h2 {
+	text-shadow: 0 2px 0 white;
+}
+.base-info {
+	margin-top: 50px;
+}
+.base-info  .span6 {
+	margin-top: 80px;
+	width: 260px;
+}
+.base-info  h1 {
+	border-bottom: 1px dashed #999;
+	font-size: 48px;
+	padding-bottom: 5px;
+	text-align: center;
+}
+.net-info ul li {
+	display: inline-block;
+	margin: 0 5px;
+}
+.introduction {
+	width: 90%;
+	margin: 20px auto;
+}
+.introduction .myself {
+	padding-bottom: 27px;
+}
+.introduce p {
+	text-indent: 30px;
+	line-height: 24px;
+}
+.myself, .study {
+	border:1px solid #ccc;
+	border-radius: 10px;
+	-webkit-border-radisu: 10px;
+	-moz-border-radius: 10px;
+	background: rgba(255,255,255,.4);
+	box-shadow: 0 0 20px #999;
+	-weikit-box-shadow: 0 0 20px #999;
+	-moz-box-shadow: 0 0 20px #999;
+	padding: 20px;
+}
