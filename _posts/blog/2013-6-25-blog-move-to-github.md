@@ -2,31 +2,30 @@
 layout: post
 title:  blog move to github
 description: 早就受不了CSDN博客的条条框框，终于下定决心将博客从CSDN转移过来了，过程是艰难的，但是当习惯后，你会发现GitHub + Jekyll + Markdown真是完美的搭配，享受这一切带来的乐趣吧~
-categories: [jekyll]
-tags: [jekyll]
+categories: [blog]
+tags: [Jekyll、github、Markdown]
 published: true
 ---
 
-# {{ page.title }} #
 
-{{page.summary}}
+{{ page.description }}
 
-### 一、启程 ###
+## 一、启程
 终于将博客从[CSDN博客](http://blog.csdn.net/qiurisuixiang)搬过来了，***come on~***  
   
   
   
-### 二、意外邂逅 ###
+## 二、意外邂逅 ##
 在学习*Vim*的时候，偶然进入一个个人博客，博客的排版很清晰，从那时起才发现有*Markdown*这么个东西。尽管*Markdown*已经存在很长时间了，但自己却从来没接触过。平时很少去学习新的东西，渐渐成为井底之蛙...  
   
   
   
-### 三、想法 ###
+## 三、想法 ##
 自从知道*Markdown*之后，发现这个东西能自己控制博客排版、格式等等的，并且*Markdown*的语法比较简单，于是萌发使用*Markdown*写博客的想法。最后发现***GitHub + Jekyll + Markdown***这个最佳组合方案。  
   
   
   
-### 四、学习 ###
+## 四、学习 ##
 #### 1. Git/GitHub/GitHub Pages ####
 相信大家对*Git*和*GitHub*多少有些了解，在此就不多做介绍了，如果有不熟悉的童鞋可以google下相关学习资料。  
 *GitHub Pages*是*GitHub*提供的托管服务，可以建立自己的主页，当然如果你有域名可以指向这里。  
@@ -52,7 +51,7 @@ published: true
   
   
   
-### 五、结束 ###
+## 五、结束 ##
 好了，现在已经对如何在***GitHub + Jekyll + Markdown***搭建一个个人博客有一个简单的认识，接下来的文章中会介绍如何使用它们建立一个个人博客。  
   
   
