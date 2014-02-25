@@ -1,0 +1,19 @@
+{% include header.snippet %}
+
+    <!--<a href="https://github.com/hahaya/hahaya.github.io" style="position: absolute; top: 0; right: 0; border: 0; z-index:99;_display:none;"  target="_blank"><img src="{{ site.repo }}/images/forkme.png" alt="Fork me on GitHub"></a>-->
+    <div class="home-menu" itemscope itemtype="http://schema.org/Person">
+        <div class="home-icon-con">
+            <a class="home-menu-icon" href="/" itemprop="name">hahaya</a>
+            <a class="home-follow" href="#" title="Contact Me">+</a>
+        </div>
+        <div class="home-contact">
+            <a href="http://www.facebook.com/hahaya" target="_blank" itemprop="follows" style="margin-left:-5px;"><img src="{{ site.repo }}/images/facebook-32.png" alt="facebook" width="32"/></a>
+            <a href="mailto:hahayacoder@gmail.com" itemprop="email" target="_blank" style="text-align:right"><img src="{{ site.repo }}/images/gmail-32.png" alt="send mail to barret" width="32"/></a>
+            <a href="http://weibo.com/u/3881658031" itemprop="follows" target="_blank" style="text-align:right;margin-left:10px"><img src="{{ site.repo }}/images/weibo-32.ico" alt="sina weibo" width="32"></a>
+        </div>
+    </div>
+
+    {{ content }}
+
+ 
+{% include footer.snippet %}

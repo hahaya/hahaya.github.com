@@ -1,0 +1,3 @@
+Sitemap: http://hahaya.github.com/sitemap.xml
+User-agent: *
+Allow: /

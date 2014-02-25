@@ -1,0 +1,22 @@
+---
+layout: nil
+---
+<?xml version="1.0" encoding="utf-8" ?>
+<?xml-stylesheet type="text/css" href="./css/rss.css" ?>
+<rss version="2.0">
+  <channel>
+     <title>{{ site.title }}</title>
+     <link>{{ site.url }}</link>
+     <description>hahaya's blog—关注游戏、服务端!</description>
+     <script xmlns="http://www.w3.org/1999/xhtml" src="./js/rss.js"></script>
+     {% for post in site.posts limit:15 %}<item>
+       <title>{{ post.title }}</title>
+       <link>http://barretlee.com{{ post.url }}</link>
+       <pubDate>{{ post.date | date_to_xmlschema }}</pubDate>
+       <description>
+         {{ post.description | xml_escape }}
+       </description>
+     </item>
+     {% endfor %}
+  </channel>
+</rss>

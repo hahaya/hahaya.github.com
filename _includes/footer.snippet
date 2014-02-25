@@ -1,0 +1,31 @@
+<div style="display:none;">
+    <script type="text/javascript">
+
+            //follow me
+            $('.home-follow').click(function(e){
+                e.preventDefault();
+
+                if($('.home-contact').is(':visible')){
+                    $('.home-contact').slideUp(100);
+                }else{
+                    $('.home-contact').slideDown(100);
+                }
+            });
+
+            //站内搜索
+            var $s = $(".web-search");
+            $s.on("focus", function(){
+                var $this = $(this);
+                setTimeout(function(){
+                    $this.select();
+                });
+            }).on("keydown", function(evt){
+                if(evt.which == "13") {
+                    $(this).parents("form").submit();
+                }
+            });
+        });
+    </script>
+</div>
+</body>
+</html>
