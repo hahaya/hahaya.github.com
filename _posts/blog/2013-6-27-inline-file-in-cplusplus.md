@@ -9,7 +9,7 @@ published: true
 
 {{page.description}}
 
-### inl文件介绍 ###
+## inl文件介绍 ##
 inl文件是内联函数的源文件。内联函数通常在C++头文件中实现，但是当C++头文件中内联函数过多的情况下，我们想使头文件看起来简洁点，能不能像普通函数那样将内联函数声明和函数定义放在头文件和实现文件中呢？当然答案是肯定的，具体做法将是：将内联函数的具体实现放在inl文件中，然后在该头文件末尾使用`#include`引入该inl文件。  
 
 由于编译器等不支持将模板函数、模板类等放单独分开编译，但是有了inl文件，我们可以把声明放在头文件中，然后将具体实现放在inl文件中。  
@@ -18,7 +18,7 @@ inl文件是内联函数的源文件。内联函数通常在C++头文件中实�
 
 在Google的C++代码编程规范中也说到了inl文件，需要阅读的同学可以从这里阅读Google的C++代码规范:[Google C++ Style Guide](http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml)。  
 
-### 简单示例 ###
+## 简单示例 ##
 {%highlight c++%}
 //inl_demo.h
 #ifndef _INL_DEMO_H_
