@@ -59,6 +59,4 @@ int main(int argc, char *argv[]){
 	cout << "The Max is ：" << return_max(a, b) << endl;
 	return 0;
 }
-{%endhighlight%} 
-
-
+{%endhighlight%}  

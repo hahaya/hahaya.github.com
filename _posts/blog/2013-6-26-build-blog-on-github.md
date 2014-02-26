@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 使用Github Pages搭建个人独立博客
+title: Github Pages搭建个人博客
 description: Github是一个伟大的发明，使用Github Pages很容易搭建一个个人博客，接下来一步一步搭建属于自己的独立博客，希望能给你一些帮助。
 category: blog
 tags: Jekyll github Markdown
@@ -22,7 +22,7 @@ published: true
 		2. 基于Git，许多东西需要自己动手，没有Wordpress等那样强大的后台
 		
 
-## 前提 ##
+## 准备工作 ##
 要在GitHub上搭建博客，起码得有一个[GitHub](https://github.com)账号，没有的同学就去注册一个吧。要上传代码到GitHub就需要会简单使用Git，不会的同学也可以学学。
 
 ## GitHub ##
@@ -33,7 +33,7 @@ GitHub是个神奇的发明，将代码和社区联系在一起。GitHub是现�
 项目主页：为项目启用项目主页很简单，只需要在项目版本库中创建一个名为`gh-pages`的分支，并向其中添加静态网页即可，通过网址`http://username.github.com/helloworld`（假设项目名为helloworld）访问。  
 
 
-## 使用Github Pages功能创建个人博客 ##
+## 使用Github Pages创建个人博客 ##
 1. 登陆Github，创建一个名为`hahaya.github.com`的版本库（注意将hahaya替换成自己的Github账户名）。
 2. 点击Setting，选择一个自己喜欢的模板，最后点击发布public按钮。
 3. 耐心等待一段时间（不超过10分钟），登陆`http://username.github.com`，会发现自己的个人博客已经生成。
@@ -83,7 +83,3 @@ GitHub是个神奇的发明，将代码和社区联系在一起。GitHub是现�
 		jekyll server
 
 4. 在浏览器中输入`http://localhost:4000`查看自己修改后的网站。  
-  
-  
-  
-
