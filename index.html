@@ -14,7 +14,7 @@ layout: home
 		<div class="cate-bar"><span id="cateBar"></span></div>
 
 			<ul class="artical-list">   
-			{% for post in categories.blog %}
+			{% for post in paginator.posts %}
 				<li itemscope itemtype="http://schema.org/Article">
 					<h2><a href="{{ post.url }}" itemprop="url">{{ post.title }}</a></h2>
 					<div class="title-desc" itemprop="description">{{ post.description }}</div>
