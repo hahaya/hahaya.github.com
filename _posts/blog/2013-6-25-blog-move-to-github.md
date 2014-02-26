@@ -3,7 +3,7 @@ layout: post
 title:  blog move to github
 description: 早就受不了CSDN博客的条条框框，终于下定决心将博客从CSDN转移过来了，过程是艰难的，但是当习惯后，你会发现GitHub + Jekyll + Markdown真是完美的搭配，享受这一切带来的乐趣吧~
 category: blog
-tags: Jekyll、github、Markdown
+tags: Jekyll github Markdown
 published: true
 ---
 
