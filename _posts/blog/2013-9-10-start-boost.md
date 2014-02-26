@@ -3,7 +3,7 @@ layout: post
 title: 开始学习boost
 description: 最近又是很长时间没有更新博客了，这段时间一直在跳跃性的学习：cocos2d-x、qt自定义窗体、boost.asio等等，但是一直没有怎么整理出来，偷懒了，这样是不行的，现在再一次开始学习boost，那么就从如何安装boost开始吧，这是很重要的一步，只有安装好了才能进行接下来的学习，好了，废话不多说，开始吧...
 category: blog
-tags: [boost
+tags: boost
 published: true
 ---
 
