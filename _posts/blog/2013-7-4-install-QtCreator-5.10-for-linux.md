@@ -14,7 +14,7 @@ published: true
 1. 下载QtCreator 5.10，下载地址:[qt-project](http://qt-project.org/downloads)  
 2. 依次执行下面的命令进行安装  
 
-		cd software（下载QtCreator 5.10所在目录）
+		cd software（下载的QtCreator 5.10所在目录）
 		chmod 0777 qt-linux-opensource-5.1.0-android-x86-offline.run 
 		./qt-linux-opensource-5.1.0-android-x86-offline.run  
   
