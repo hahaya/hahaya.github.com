@@ -13,7 +13,7 @@ layout: home
         <div class="cate-bar"><span id="cateBar"></span></div>
 
         <ul class="artical-list">
-        {% for post in site.categories.opinion %}
+        {% for post in site.categories.project %}
             <li itemscope itemtype="http://schema.org/Article">
                 <h2>
                     <a href="{{ post.url }}" itemprop="url">{{ post.title }}</a>
