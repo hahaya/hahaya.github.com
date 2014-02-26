@@ -3,7 +3,7 @@ layout: post
 title: Linux下安装、配置libevent
 description: 一直对服务端开发很感兴趣，但是一直没有开始看，而且经常听别人说起libevent，自己却一直没用过，今天在qq群里面聊天，有一哥们讲到自己学习服务端开发的学习经历，其中也提到了libevent，那哥们也对我提出的问题给了很好的回答，服务端开发有很多东西需要学习，那么就从libevent开始吧。
 category: blog
-tags: libevent network
+tags: network
 published: true
 ---
 
