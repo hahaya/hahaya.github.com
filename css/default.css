@@ -176,6 +176,17 @@ table td, table th {
 .index-content .cate-bar { height:3px; width:70%; margin:0 auto;margin-bottom:100px;*margin-bottom:60px;*margin-top:8px; }
 .index-content #cateBar { display:inline-block; zoom:1; height:3px; background:red; position:relative; width:0;_line-height:0;_font-size:0; }
 
+/***************GitHub banner******************/
+/***************add by hahaya*****************/
+.github{
+    opacity: 0.6;
+}
+
+.github:hover{
+    opacity: 0.9;
+}
+
+
 /***************Wiki Style*****************/
 .wiki * {
     -webkit-transition: all .4s ease;
