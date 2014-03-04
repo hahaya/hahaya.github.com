@@ -18,7 +18,7 @@ published: true
 ![facade_purpose](/images/blog-article-images/blog/facade_purpose.png)  
 
 ## 三 类图 ##
-!facade_uml](/images/blog-article-images/blog/facade_uml.png) 
+![facade_uml](/images/blog-article-images/blog/facade_uml.png) 
 **Facade:**  
 1. 知道哪些子系统类负责处理请求  
 2. 将客户的请求代理给适当的子系统对象  
