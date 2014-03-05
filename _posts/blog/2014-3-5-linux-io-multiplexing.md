@@ -26,15 +26,15 @@ I/O复用使程序能同时监听多个文件描述符(file descriptor),程序�
 2. 当多个文件描述符同时就绪时，如果不采取额外的措施，程序就只能依次处理其中的每一个文件描述符，这使得服务器程序看起来是串行处理的。这时如果要实现并发，只有使用多进程或多线程等编程手段。  
 
 ## 四 socket文件描述符就绪条件
-### socket可读 ###
-### socket可写 ###
-### socket异常 ###
+### 1 socket可读 ###
+### 2 socket可写 ###
+### 3 socket异常 ###
 
 ## 五 select系统调用 ##
-### 作用 ###
+### 1 作用 ###
 在一段指定的时间内，监听用户感兴趣的文件描述符的可读、可写、异常事件
 
-### select函数介绍 ###
+### 2 select函数介绍 ###
 **select函数原型如下:**  
 
         int select(int nfds, fd_set *readfds, fd_set *writefds,  
@@ -42,6 +42,7 @@ I/O复用使程序能同时监听多个文件描述符(file descriptor),程序�
 
 **select函数说明:**  
 应用程序调用select函数时，通过readfds、writefds、exceptfds传入感兴趣的文件描述符，内核将修改它们来通知应用程序哪些文件描述符已经就绪。  
+<br />
 **select函数参数说明:**   
 nfds: 被监听的文件描述符的总数，因为是用位记录要监听的文件描述符，比如需要监听文件描述符2,则表示要记录第2位，则会设置fd_set中的第2位,故最大值为2 + 1 =3，所以nfds通常设置为监听的所有文件描述符中的最大值加1，因为文件描述符、记录位是从0开始计数的。比如有a,b,c三个要监听的文件描述符，并且a的值最大,则nfds应该设置为a + 1  
 readfds:     可读的文件描述符集合    
@@ -72,7 +73,7 @@ fd_set结构体仅包含一个整形数组，该数组的每一个元素的每�
 select函数的最后一个参数timeout是timeval类型的，用来设置select函数的超时时间，timeout是一个timeval类型的指针，所以内核能修改修改它，从而告诉应用程序select函数等待了多长时间，不过我们不能完全信任select函数调用后返回的timeout值，比如调用失败时,timeout的值是不确定的。  
 通过timeval的定义，我们可以发现,select函数给我们提供了一个微秒级别的定时器。如果给timeout变量的tv_sec和tv_usec都设置成0，则select函数会立即返回。如果将timeout设置为NULL，则select函数将一直阻塞，直到某个文件描述符就绪。  
 
-### select函数使用示例 ###
+### 3 select函数使用示例 ###
 **select函数同时监听可读、异常状态**
 {%highlight c%}
 #include <sys/types.h>
