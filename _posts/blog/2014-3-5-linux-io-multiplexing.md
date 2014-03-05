@@ -31,10 +31,10 @@ I/O复用使程序能同时监听多个文件描述符(file descriptor),程序�
 ### socket异常 ###
 
 ## 五 select系统调用 ##
-### 1 作用 ###
+### 作用 ###
 在一段指定的时间内，监听用户感兴趣的文件描述符的可读、可写、异常事件
 
-### 2 select函数介绍 ###
+### select函数介绍 ###
 **select函数原型如下:**  
 
         int select(int nfds, fd_set *readfds, fd_set *writefds,  
@@ -48,11 +48,13 @@ readfds:     可读的文件描述符集合
 writefds：   可写的文件描述符集合    
 exceptfds:   异常的文件描述符集合  
 timeout:     设置select函数的超时时间  
+<br />
 **select返回值:**  
 select函数成功时，返回就绪(可读、可写、异常)文件描述符的总数  
 如果在超时时间timeout内没有任何文件描述符就绪，则select函数返回0
 select函数失败时，返回-1，并设置errno  
 如果在select函数等待期间，程序接收到信号，则select函数立即返回-1，并设置errno为EINTR  
+<br />    
 **fd_set说明:**  
 fd_set结构体仅包含一个整形数组，该数组的每一个元素的每一位(bit)标记一个文件描述符，由于位操作过于麻烦，所以Linux中提供下面一组函数来操作fd_set:  
 
@@ -60,6 +62,7 @@ fd_set结构体仅包含一个整形数组，该数组的每一个元素的每�
         void FD_SET(int fd, fd_set *set);	//设置set的第fd位  
         void FD_CLR(int fd, fd_set *set);	//清除set的第fd位  
         void FD_ISSET(int fd, fd_set *set);	//测试set的第fd为是否被设置  
+<br />
 **timeval说明:**
 
         struct timeval {  
@@ -69,7 +72,7 @@ fd_set结构体仅包含一个整形数组，该数组的每一个元素的每�
 select函数的最后一个参数timeout是timeval类型的，用来设置select函数的超时时间，timeout是一个timeval类型的指针，所以内核能修改修改它，从而告诉应用程序select函数等待了多长时间，不过我们不能完全信任select函数调用后返回的timeout值，比如调用失败时,timeout的值是不确定的。  
 通过timeval的定义，我们可以发现,select函数给我们提供了一个微秒级别的定时器。如果给timeout变量的tv_sec和tv_usec都设置成0，则select函数会立即返回。如果将timeout设置为NULL，则select函数将一直阻塞，直到某个文件描述符就绪。  
 
-### 3 select函数使用示例 ###
+### select函数使用示例 ###
 **select函数同时监听可读、异常状态**
 {%highlight c%}
 #include <sys/types.h>
