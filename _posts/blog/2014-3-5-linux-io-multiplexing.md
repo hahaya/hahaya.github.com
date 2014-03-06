@@ -74,7 +74,6 @@ select函数的最后一个参数timeout是timeval类型的，用来设置select
 通过timeval的定义，我们可以发现,select函数给我们提供了一个微秒级别的定时器。如果给timeout变量的tv_sec和tv_usec都设置成0，则select函数会立即返回。如果将timeout设置为NULL，则select函数将一直阻塞，直到某个文件描述符就绪。  
 
 ### 3 select函数使用示例 ###
-**select函数同时监听可读、异常状态**
 {%highlight c%}
 #include <sys/types.h>
 #include <sys/socket.h>
