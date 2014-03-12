@@ -81,6 +81,15 @@ int main(int argc, char **argv)
 }
 {%endhighlight%}  
 保存退出，执行`g++ OperatorRedis.cpp -o OperatorRedis -lhiredis`进行编译，编译完成后执行`./OperatorRedis`运行程序(在运行程序前需要启动redis服务端，否则会得到`connect error:Connection refused`这样的错误)，不出意外的话会看到输出的redis服务器信息～  
-好了，C++操作Redis先进行到这里了，我这边封装了一个C++操作Redis的类，等完善后会放出来...
+好了，C++操作Redis先进行到这里了，我这边封装了一个C++操作Redis的类，等完善后会放出来...  
 
+## Redis学习链接 ##
+1. [http://redis.io/](http://redis.io/):Redis官网  
+2. [http://redis.cn/](http://redis.cn/):Redis中文官网  
+3. [http://try.redis.io/](http://try.redis.io/):在线体验Redis  
+4. [https://github.com/antirez/redis](https://github.com/antirez/redis):Redis开发版本源码  
+5. [http://www.redisdoc.com/en/latest/](http://www.redisdoc.com/en/latest/):Redis命令参考  
+6. [http://blog.nosqlfan.com/topics/redis](http://blog.nosqlfan.com/topics/redis):Redis系类文章  
+7. [http://redisbook.readthedocs.org/en/latest/](http://redisbook.readthedocs.org/en/latest/):Redis设计与实现
+8. [https://github.com/huangz1990/annotated_redis_source](https://github.com/huangz1990/annotated_redis_source):注释版Redis源码
 
