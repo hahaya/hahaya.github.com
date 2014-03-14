@@ -18,7 +18,7 @@ published: true
 
 ## 三、下载安装clang ##
 YouCompleteMe需要使用clang来提供语法分析、自动补全等功能，同样安装方法有三种，但是我用的系统是Ubuntu 12.04 LTS 32位，直接源码编译clang不能通过，官方网站上已经指出这是一个bug，所以只得放弃这种方式了。在Ubuntu下通过包管理方式安装的clang版本太低了，也不采用。于是只剩下最后一种方式了：下载二进制文件，庆幸的是这是这种方法可行，不然就悲剧了。打开[clang官方下载地址](http://llvm.org/releases/download.html#3.2)，适合Ubuntu 12.04 LTS 32位的只有版本3.2的，下载其中的`Clang Binaries for Ubuntu-12.04/x86(67M)(.sig)`，下载完成后解压即可。  
-ps：1. 编译时直接使用./install.sh命令下载的clang版本可能有问题，导致YouCompleteMe中某些功能不可用,故我编译时没有直接使用install  
+ps：1. 编译时直接使用./install.sh命令下载的clang版本可能有问题，导致YouCompleteMe中某些功能不可用,故我编译时没有直接使用install.sh脚本  
     2. 各个版本的YouCompleteMe可能需要不同版本的clang，故在更新clang的同时注意更新clang,否者同样可能导致某些功能不可用  
 
 ## 四、编译YouCompleteMe ##
