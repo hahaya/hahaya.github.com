@@ -34,7 +34,9 @@ ps：1. 编译时直接使用./install.sh命令下载的clang版本可能有问�
         mkdir ycm_build
         cd ycm_build
         cmake -G "Unix Makefiles" -DEXTERNAL_LIBCLANG_PATH=~/clang_llvm_3.2/lib/libclang.so . ~/.vim/bundle/YouCompleteMe/cpp
-        make ycm_core
+        make ycm_core  
+        make ycm_support_libs  
+        
 
 ## 五、配置YouCompleteMe ##
 由于自己英文太稀烂，就没有认真看文档，以为不需要什么配置，然后编译好YCM之后，就直接新建了一个C文件，结果打开vim时提示`No .ycm_extra_conf.py file detected, so no compile flags are available. Thus no semantic support for C/C++/ObjC/ObjC++.`。然后自己一直没弄明白什么意思，就去了作者项目主页下留言，作者很热心，很认真的回复了我的问题。最后结合作者的建议，然后自己查文档，其实解决方法很简单，只需要设置`.ycm_extra_conf.py`文件的位置即可，在`.virmc`文件中添加如下内容`let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'`，然后重新打开vim即可。  
