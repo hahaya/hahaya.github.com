@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 函数对象、std::lambda、std::function、std::bind学习
+title: 函数对象、lambda、function、bind学习
 description: C++11中引入了std::lambda、std::function、std::bind非常好用的特性，本文从一个例子开始，然后引出如何使用std::lambda、std::function、std::bind将这个例子改得更简洁、方便
 category: blog
 tags: c++
@@ -321,12 +321,13 @@ int main()
     vecInt.push_back(2);
     vecInt.push_back(3);
 
-    //std::ref只能用于左值 使用下面一行代码直接使用std::ref引用lambda表达式目前是编译不错的
+    //std::ref只能用于左值 最下面一行代码直接使用std::ref引用lambda表达式目前是编译不过的
     //所以先用auto func对象保存lambda表达式返回的闭包对象 再std::for_each再对func进行引用
     auto func = [](int val){std::cout << val + 2 << std::endl;};
     std::for_each(vecInt.begin(), vecInt.end(), std::ref(func));
     //std::for_each(vecInt.begin(), vecInt.end(),
             //std::ref( [](int val){std::cout << val + 2 << std::endl;} ));
+    return 0;
 }
 {%endhighlight%}  
 
@@ -367,3 +368,114 @@ int main()
 
 }
 {%endhighlight%}  
+
+### 2 std::bind ###
+std::bind其实是一系列的函数模板，在头文件 <functional> 中定义，函数原型如下：  
+
+	template< class F, class... Args >  
+	/*unspecified*/ bind( F&& f, Args&&... args );  
+	template< class R, class F, class... Args >  
+	*unspecified*/ bind( F&& f, Args&&... args );  
+函数模板std::bind能对普通函数、成员函数、静态成员函数、公共成员变量、公共静态成员变量等进行包装，调用std::bind的包装相当与将函数名和参数绑定在函数内部。std::bind函数模板返回的函数对象的类型是不确定的，但是可以存储在std::function内。std::bind绑定的参数是通过传值的方式传递的，如果需要通过引用传递则参数先需要用std::ref、std::cref进行引用，然后在传递给std::bind
+将std::bind函数模板的返回值保存在std::function后，调用时需要传递的参数个数由std::bind中的占位符（std::placeholders::_1、std::placeholders::_2、std::placeholders::_3等）个数决定，即有几个占位符调用时就需要几个参数
+
+### 3 std::bind示例 ###
+{%highlight c++%}
+#include <iostream>
+#include <functional>
+
+//带有引用参数的普通函数
+void display(int first, int &second)
+{
+    std::cout << "first: " << first << " second:" << second << std::endl;
+}
+
+//普通函数
+int get_number(int number)
+{
+    return number;
+}
+
+class Test
+{
+public:
+    Test(int num) : num_(num)
+    { }
+
+    //静态成员函数
+    static void say_hello()
+    { std::cout << "hello"  << std::endl; }
+
+    //成员函数
+    void print_add(int value)
+    { std::cout << "add:" << value + num_ << std::endl; }
+
+public:
+    int num_;
+};
+
+int main()
+{
+    //绑定普通函数
+    //使用auto接收std::bind的返回值
+    std::cout << "绑定普通函数" << std::endl;
+    auto bind_comm_func = std::bind(get_number, std::placeholders::_1);
+    std::cout << bind_comm_func(2) << std::endl;
+    //使用std::function接收std::bind的返回值
+    std::function<int(int)> bind_comm_func_1 = std::bind(get_number, std::placeholders::_1);
+    std::cout << bind_comm_func_1(22) << std::endl;
+    std::cout << "绑定普通函数" << std::endl;
+
+
+    //绑定带有引用参数的普通函数
+    std::cout << "绑定带有引用参数的普通函数" << std::endl;
+    int value = 22222;
+    //auto
+    auto bind_ref_func = std::bind(display, std::placeholders::_1, std::ref(value));
+    bind_ref_func(1111);
+    //std::bind
+    std::function<void(int)> bind_ref_func_1 = std::bind(display, std::placeholders::_1, std::ref(value));
+    bind_ref_func_1(22222);
+    std::cout << "绑定带有引用参数的普通函数" << std::endl;
+
+    
+    //绑定静态成员函数
+    std::cout << "绑定静态成员函数" << std::endl;
+    //auto
+    auto bind_static_member_func = std::bind(&Test::say_hello);
+    bind_static_member_func();
+    //std::function
+    std::function<void(void)> bind_static_member_func_1 = std::bind(&Test::say_hello);
+    bind_static_member_func();
+    std::cout << "绑定静态成员函数" << std::endl;
+
+    //绑定成员函数 需要多传递一个函数对象 故先需要创建函数对象
+    std::cout << "绑定成员函数" << std::endl;
+    //auto
+    Test test(2);
+    auto bind_member_func = std::bind(&Test::print_add, test, std::placeholders::_1);
+    bind_member_func(2);
+    //std::function
+    std::function<void(int)> bind_member_func_1 = std::bind(&Test::print_add, test, std::placeholders::_1);
+    bind_member_func_1(3);
+    std::cout << "绑定成员函数" << std::endl;
+
+    //绑定public成员变量
+    std::cout << "绑定public成员变量" << std::endl;
+    //auto
+    auto bind_member_data = std::bind(&Test::num_, std::placeholders::_1);
+    std::cout << bind_member_data(test) << std::endl;
+    //int a = bind_member_data(test);
+    //std::cout << "a" <<  a << std::endl;
+    //std::function
+    std::function<int(Test)> bind_member_data_1 = std::bind(&Test::num_, std::placeholders::_1);
+    std::cout << bind_member_data_1(test) << std::endl;
+    std::cout << "绑定public成员变量" << std::endl;
+    
+    return 0;
+}
+{%endhighlight%}  
+
+## 六 总结 ##
+好了，文章到这里也就该结束了，本文从std::for_each的问题引出函数对象、std::lambda、std::function、std::bind，并使用函数对象、std::lambda、std::function、std::bind解决std::for_each要求第3个参数为带一参数的函数或函数对象这一局限。  
+PS:文章中例子的编译需要C++11支持，并且所有例子在gcc4.8.1下编译通过,使用gcc编译时需要带上-std=c++11这一编译选项
