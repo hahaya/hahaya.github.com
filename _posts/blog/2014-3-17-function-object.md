@@ -9,7 +9,7 @@ published: true
 
 ## 一 函数对象 ##
 在学习其他知识之前，先来学习函数对象，然后引出std::lambda、std::function、std::bind等内容的学习，那么究竟什么是函数对象呢？  
-函数对象(Function Object)又称函数对象类、仿函数、高阶函数，它实际上是指那些可以被传入其他函数或是从其他函数返回的函数(比如std::for_each函数的第3个参数就要求传入接受一个参数的函数或函数对象),是不是和函数指针的作用很相似，后面会介绍函数对象和函数指针的差别～  
+函数对象(Function Object)又称函数对象类、仿函数、高阶函数，它实际上是指那些可以被传入其他函数或是从其他函数返回的函数(比如std::for_each函数的第3个参数就要求传入接受一个参数的函数或函数对象),是不是和函数指针的作用很相似，后面会介绍函数对象和函数指针的差别  
 感觉上面关于函数对象的定义还是好复杂呀，通俗的讲函数对象就是一个重载了operator()操作符的类，这就是函数对象和普通类的差别，也就是说重载了operator()操作符的类都可以叫函数对象类，由于重载了operator()操作符的类有和普通函数类似的使用方法(但是函数对象使用前需要定义一个对象，准确来说应该和函数指针更相似，函数指针在使用前也需要typedef定义一个类型)，故称函数对象、函数对象类、仿函数等等。下面来看一个简单的函数对象及其使用:  
 
 {%highlight c++%}
@@ -149,10 +149,10 @@ int main()
 ### 2 std::lambda语法 ###
 std::lambda表达式(函数)能构造一个闭包，在作用域内捕获变量一个的匿名函数对象。 常用的std::lambda表达式的语法如下：  
 
-[ capture ] ( params ) mutable exception attribute -> ret { body } 	(1) 	
-[ capture ] ( params ) -> ret { body } 					(2) 	
-[ capture ] ( params ) { body } 					(3) 	
-[ capture ] { body } 							(4) 	
+	[ capture ] ( params ) mutable exception attribute -> ret { body } 	(1) 	
+	[ capture ] ( params ) -> ret { body } 					(2) 	
+	[ capture ] ( params ) { body } 					(3) 	
+	[ capture ] { body } 							(4) 	
 
 **不同形式的语法说明**
 (1)完整的声明  
@@ -168,7 +168,7 @@ capture - 捕获块，指定哪些外部变量可以在lambda函数体body中可
 	[&]	以引用的形式捕获lambda表达式所在函数的函数体中的所有外部变量  
 	[a,&b]	按值捕获a，并按引用捕获b  
 	[=, &a]	以引用的形式捕获a，其余变量以值的形式捕获  
-    	[&， a]	以值的形式捕获a，其余变量以引用的形式捕获  
+	[&， a]	以值的形式捕获a，其余变量以引用的形式捕获  
 	[this]，按值捕获了this指针   
 
 params - 参数列表，与命名函数一样  
