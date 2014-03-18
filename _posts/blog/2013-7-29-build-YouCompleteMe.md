@@ -33,6 +33,7 @@ ps：1. 编译时直接使用./install.sh命令下载的clang版本可能有问�
 
 2. YouCompleteMe需要vim版本为7.3.548或者更高，如果版本不够，需要编译vim，如何编译vim请参考这篇文章:[Ubuntu 12.04下编译Vim](http://hahaya.github.io/2013/07/25/build-vim-on-ubuntu.html)  
 3. 切换到用户主目录下，为编译文件新建一个目录，然后设置cmake的编译选项，最后开始编译，在终端下依次执行一下命令  
+
         cd ~
         mkdir ycm_build
         cd ycm_build
@@ -44,6 +45,7 @@ ps：1. 编译时直接使用./install.sh命令下载的clang版本可能有问�
 ## 五、配置YouCompleteMe ##
 1. 由于自己英文太稀烂，就没有认真看文档，以为不需要什么配置，然后编译好YCM之后，就直接新建了一个C文件，结果打开vim时提示`No .ycm_extra_conf.py file detected, so no compile flags are available. Thus no semantic support for C/C++/ObjC/ObjC++.`。然后自己一直没弄明白什么意思，就去了作者项目主页下留言，作者很热心，很认真的回复了我的问题。最后结合作者的建议，然后自己查文档，其实解决方法很简单，只需要设置`.ycm_extra_conf.py`文件的位置即可，在`.virmc`文件中添加如下内容`let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'`，然后重新打开vim即可  
 2. 为了补全C++代码，在Linux下我们需要修改.ycm_extra_conf.py文件中的flags部分，使用`-isystem`添加系统的头文件进行解析，使用`-I`添加第三方的头文件进行解析，在flags部分后添加如下内容：  
+
         '-isystem',  
         '/usr/include',  
         '-isystem',  
