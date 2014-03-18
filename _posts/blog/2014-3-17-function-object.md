@@ -1,0 +1,245 @@
+---
+layout: post
+title: 函数对象、std::lambda、std::function、std::bind学习
+description: C++11中引入了std::lambda、std::function、std::bind非常好用的特性，本文从一个例子开始，然后引出如何使用std::lambda、std::function、std::bind将这个例子改得更简洁、方便
+category: blog
+tags: c++
+published: true
+---
+
+## 一 函数对象 ##
+在学习其他知识之前，先来学习函数对象，然后引出std::lambda、std::function、std::bind等内容的学习，那么究竟什么是函数对象呢？  
+函数对象(Function Object)又称函数对象类、仿函数、高阶函数，它实际上是指那些可以被传入其他函数或是从其他函数返回的函数(比如std::for_each函数的第3个参数就要求传入接受一个参数的函数或函数对象),是不是和函数指针的作用很相似，后面会介绍函数对象和函数指针的差别～  
+感觉上面关于函数对象的定义还是好复杂呀，通俗的讲函数对象就是一个重载了operator()操作符的类，这就是函数对象和普通类的差别，也就是说重载了operator()操作符的类都可以叫函数对象类，由于重载了operator()操作符的类有和普通函数类似的使用方法(但是函数对象使用前需要定义一个对象，准确来说应该和函数指针更相似，函数指针在使用前也需要typedef定义一个类型)，故称函数对象、函数对象类、仿函数等等。下面来看一个简单的函数对象及其使用:  
+
+{%highlight c++%}
+#include <iostream>
+
+//普通函数
+int add(int a, int b)
+{
+    return a + b;
+}
+
+//函数对象类
+class FunctionObjectDefine
+{
+public:
+    int operator()(int a, int b) { return a + b; };
+};
+
+int main()
+{
+    FunctionObjectDefine func;
+    int total = add(1, 2);
+    int sum = func(1, 2); //是不是和普通函数add(1, 2)调用方式一样
+    std::cout << "Total:" << total << std::endl;
+    std::cout << "Sum:" << sum << std::endl;
+    return 0;
+}
+{%endhighlight%}  
+
+## 二 函数对象和函数指针 ##
+前面提到函数对象和函数指针的作用很相似，下面先看一个小例子:  
+
+{%highlight c++%}
+#include <iostream>
+
+int add_func(int a, int b)
+{
+    return a + b;
+}
+
+//函数对象
+class AddClass
+{
+public:
+    int operator()(int a, int b) { return a + b; }
+};
+
+//函数指针
+typedef int (*AddFunction)(int a, int b);
+
+int main()
+{
+    //为了方便对比 将函数对象和函数指针声明了同名变量 
+    //为了防止报错 故两个同名变量都有各自的作用域 每个的作用域在各自的{}中
+    //通过后面的调用发现两者调用方式是一样的 都是通过add(1, 2)调用
+    {
+        //函数对象的使用
+        AddClass add;
+        int sum = add(1, 2);
+        std::cout << "Sum:" << sum << std::endl;
+    }
+
+    {
+        //函数指针的使用
+        AddFunction add = &add_func;
+        int sum = add(2, 2);
+        std::cout << "Sum:" << sum << std::endl;
+    }
+
+    return 0;
+}
+{%endhighlight%}  
+
+通过上面的小例子我们很容易发现，函数对象和函数指针在定义的方式不一样，但是调用的方式是一样的。既然已经有了函数指针这个东西，为什么还要发明函数对象了，其实很简单，函数对象可以将附加数据保存在成员变量中，从而实现携带附加数据，而函数指针就不行了。考虑下面一个应用场景，我们需要使用std::for_ecah将一个std::vector<int>中的每一个值加上某个值然后输出，如果使用普通函数，则其声明应该为`void add_num(int value, int num)`,其中value为容器中的元素，num为要加上的数。但是由于std::for_each函数的第3个参数就要求传入接受一个参数的函数或函数对象,所以将add_num函数传入std::for_each是错误的，然而函数对象可以携带附加数据解决这个问题，看下面的例子：  
+
+{%highlight c++%}
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+class Add
+{
+public:
+    Add(int num) : num_(num) 
+    { } 
+
+    void operator()(int value) 
+    { std::cout << value + num_ << std::endl; }
+
+private:
+    int num_;
+};
+
+int main()
+{
+    std::vector<int> vecInt;
+    vecInt.push_back(1);
+    vecInt.push_back(2);
+    vecInt.push_back(3);
+
+    Add add(2);
+    //std::for_each的第3个对象为函数对象
+    std::for_each(vecInt.begin(), vecInt.end(), add);
+}
+{%endhighlight%}  
+
+当然函数对象和函数指针还有其他方面的差别，在此就不一一介绍了，但是自从有了std::bind之后，我们也可以在std::for_each中使用带有两个参数的add_num，具体的使用会在std::bind中介绍。当然也许你会觉得为了调用std::for_each还要自己写一个函数对象类很繁琐，那么下面的std::lambda是你想找的的东西～
+
+## 三 std::lambda ##
+### 1 引入std::lambda ###
+lambda是C++11中才引入的新特性，使程序员能定义匿名对象，而不必定义独立的函数和函数对象，使代码更容易编写和理解，又能防止别人的访问(调用)。  
+考虑我们上面的一个例子,是不是为了使用STL中的某个算法，而需要自己去实现函数对象类很繁琐，因此很多程序员宁愿自己写循环也不愿意使用std::for_each等STL算法，如此以来，STL算法失去了意义，也丢掉了编译优化的机会，那么请看下面使用std::lambda来简化这个例子(使用g++ -std=c++11 lambda_for_each.cc编译)  
+
+{%highlight c++%}
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+int main()
+{
+    std::vector<int> vecInt;
+    vecInt.push_back(1);
+    vecInt.push_back(2);
+    vecInt.push_back(3);
+
+    std::for_each(vecInt.begin(), 
+                  vecInt.end(), 
+                  [](int x){ std::cout << x + 2 << std::endl; });
+}
+{%endhighlight%}  
+
+通过std::lamda改进后的例子是不是很简单、方便？lambda使创建这种简单的函数对象类更加方便，上面例子中的lambda表达式`[](int x){ std::cout << x + 2 << std::endl; }`会让编译器产生一个类似前面例子中Add的未命名函数对象类，并且具有以下优点:  
+1. 简洁，不许要自己去实现函数对象类  
+2. 不会为临时的使用而引入新的名字，所以不会导致名字污染(不会引入Add、add等名字)  
+3. 函数对象类名不如它的实际代码的表达能力强，把代码放在更靠近调用它的地方将提高代码清晰度  
+
+### 2 std::lambda语法 ###
+std::lambda表达式(函数)能构造一个闭包，在作用域内捕获变量一个的匿名函数对象。 常用的std::lambda表达式的语法如下：  
+
+[ capture ] ( params ) mutable exception attribute -> ret { body } 	(1) 	
+[ capture ] ( params ) -> ret { body } 					(2) 	
+[ capture ] ( params ) { body } 					(3) 	
+[ capture ] { body } 							(4) 	
+
+**不同形式的语法说明**
+(1)完整的声明  
+(2)一个const类型的lambda声明：捕获外部对象的值不能被修改，如果需要修改则需要加上mutable关键字  
+(3)省略返回值类型的lambda声明：省略返回值的lambda声明有两种情况(a)body只有一个return语句，那么返回值类型是return后面的表达式的类型(使用自动推导)(b)返回值类型是void  
+(4)省略参数列表：函数没有参数，即参数列表是()  
+</br>
+**解释**
+capture - 捕获块，指定哪些外部变量可以在lambda函数体body中可见,符号可按如下规则传入:  
+	
+	[] 	不捕获任何外部变量  
+	[=]	以值的形式捕获lambda表达式所在函数的函数体中的所有外部变量  
+	[&]	以引用的形式捕获lambda表达式所在函数的函数体中的所有外部变量  
+	[a,&b]	按值捕获a，并按引用捕获b  
+	[=, &a]	以引用的形式捕获a，其余变量以值的形式捕获  
+    	[&， a]	以值的形式捕获a，其余变量以引用的形式捕获  
+	[this]，按值捕获了this指针   
+
+params - 参数列表，与命名函数一样  
+mutable - 允许body修改传进来的形参，以及调用它们的非const成员函数  
+exception - 提供闭包类型的operator()成员函数的异常说明或noexcept语句  
+attribute - 提供闭包类型的operator()成员函数的属性说明
+ret - 返回值类型。如果不存在，它由该函数的return语句来隐式决定（或者是void，例如当它不返回任何值的时候）  
+body - 函数体   
+
+### 3 闭包示例 ###
+{%highlight c++%}
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+
+int main()
+{
+    //eg1 直接输出hello lambda. 
+    //尾部的()使该lambda表达式可立即执行
+    //前面的lambda表达式产生一个匿名对象 结合后面的()相当与一个无參的函数调用
+    []{ std::cout << "hello lambda." << std::endl; }();
+
+    //eg2 该lambda表达式接收一个const std::string&类型的参数
+    //返回一个std::string类型的值 结果保存在lambda_return变量中
+    //尾部的("hahaya")表示传入一个"hahaya"参数使lambda表达式立即执行
+    std::string lambda_return = [](const std::string &str)->std::string{
+            return "hello " + str; }("hahaya");
+    std::cout << lambda_return << std::endl;
+
+    //eg3 该lambda表达式接收一个const std::string&类型的参数
+    //lambda表示式的返回值通过return语句推导
+    //lambda表达式产生一个匿名对象 保存在func对象中
+    auto func = [](const std::string &str){ return "hello " + str; };
+    std::cout << func("ToSmile") << std::endl;
+    std::cout << func("C++") << std::endl;
+
+    //eg4 按传值的方式捕获外部变量 
+    //需要加上mutable关键字 否则不能在lambda表达式中修改total的值
+    //由于是传值方式  所以在lambda表达式外部total的值并没有改变 但是在lambda表达式内部改变了
+    int total = 0;
+    [total](int num)mutable{ total += num; std::cout << total << std::endl; }(2);
+    std::cout << "capture by value:" << total << std::endl;
+
+    //eg5 按传引用的方式捕获外部变量
+    //不需要加上mutable关键字
+    //由于是传引用方式 所以在lambda表达式内部和外部都在total的值改变了
+    [&total](int num){ total += num; std::cout << total << std::endl; }(2);
+    std::cout << "capture by reference:" << total << std::endl;
+
+    //eg6 lambda和stl的配合使用
+    std::vector<int> vecInt;
+    vecInt.push_back(1);
+    vecInt.push_back(2);
+    vecInt.push_back(3);
+    std::for_each(vecInt.begin(), vecInt.end(), [](int val){std::cout << val + 2 << std::endl;});
+
+    std::cout << std::endl;
+    std::vector<int> secInt;
+    secInt.push_back(7);
+    secInt.push_back(8);
+
+    //eg7 lambda和stl的配合使用 先保存匿名对象后调用
+    auto add_func = [](int val){std::cout << val + 2 << std::endl; };
+    std::for_each(secInt.begin(), secInt.end(), add_func);
+
+
+    return 0;
+}
+{%endhighlight%}  
+
+### 4 闭包类型 ###
+在前面的例子中，我们函数对象类名为Add，而后面的例子中lambda表达式执行后由编译器生成自动生成的函数对象有不同的类型名字，并且只有编译器知道这个类型名字，可以认为它是一个未命名类型，即所谓的闭包类型(ClosureType)。来lambda表达式产生的临时对象叫做闭包对象。类型的匿名性并不影响std::for_each的调用，因为它是一个函数模板，会进行类型推导  
+
