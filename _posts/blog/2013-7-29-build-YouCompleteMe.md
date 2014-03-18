@@ -37,7 +37,7 @@ ps：1. 编译时直接使用./install.sh命令下载的clang版本可能有问�
         cd ~
         mkdir ycm_build
         cd ycm_build
-        cmake -G "Unix Makefiles" -DEXTERNAL_LIBCLANG_PATH=~/clang_llvm_3.2/lib/libclang.so . ~/.vim/bundle/YouCompleteMe/cpp
+        cmake -G "Unix Makefiles" -DEXTERNAL_LIBCLANG_PATH=~/clang_llvm_3.2/lib/libclang.so ~/.vim/bundle/YouCompleteMe/cpp
         make ycm_core  
         make ycm_support_libs  
         
