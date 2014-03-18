@@ -243,3 +243,127 @@ int main()
 ### 4 闭包类型 ###
 在前面的例子中，我们函数对象类名为Add，而后面的例子中lambda表达式执行后由编译器生成自动生成的函数对象有不同的类型名字，并且只有编译器知道这个类型名字，可以认为它是一个未命名类型，即所谓的闭包类型(ClosureType)。来lambda表达式产生的临时对象叫做闭包对象。类型的匿名性并不影响std::for_each的调用，因为它是一个函数模板，会进行类型推导  
 
+## 四 std::function ##
+### 1 引入std::function ###
+在前面的例子中`auto add_func = [](int val){std::cout << val + 2 << std::endl; };`我们使用auto add_func来保存lambda表达式生成的闭包对象，使用auto参数类型推导出add_fucn型的类型(闭包类型ClosureType)。由于闭包类型可以隐式地转换为std::function，下面例子中说明如何将闭包类型转换成std::function  
+
+{%highlight c++%}
+#include <iostream>
+#include <functional>    //std::function需要的头文件
+#include <algorithm>    //std::for_each需要的头文件
+#include <vector>
+
+int main()
+{
+    std::vector<int> vecInt;
+    vecInt.push_back(1);
+    vecInt.push_back(2);
+    vecInt.push_back(3);
+
+    //lambda产生的闭包类型能隐式转换成std::function
+    std::function<void(int)> func = 
+        [](int val){ std::cout << val + 2 << std::endl; };
+
+    std::for_each(vecInt.begin(), vecInt.end(), func);
+
+    return 0;
+}
+{%endhighlight%}  
+
+### 2 std::function介绍 ###
+那么std::function究竟是个什么东西呢？其实std::function是一个类模板，std::function可以对函数(普通函数、成员函数)、lambda表达式、std::bind的绑定表达式、函数对象等进行封装。std::function的实例可以对这些封装的目标进行存储、复制和调用等操作，下面来看个例子:  
+
+{%highlight c++%}
+#include <iostream>
+#include <functional>    //std::function需要的头文件
+#include <algorithm>    //std::for_each需要的头文件
+#include <vector>
+
+int main()
+{
+    std::vector<int> vecInt;
+    vecInt.push_back(1);
+    vecInt.push_back(2);
+    vecInt.push_back(3);
+
+    //lambda产生的闭包类型能隐式转换成std::function
+    std::function<void(int)> func = 
+        [](int val){ std::cout << val + 2 << std::endl; };
+
+    std::for_each(vecInt.begin(), vecInt.end(), func);
+
+    return 0;
+}
+{%endhighlight%}  
+
+### 3. 提升std::function的性能 ###
+在构造std::function时存在两个隐藏，但是可预防的开销:  
+1. std::function构造函数按值传递被包装目标，这意味这会进行拷贝。而构造函数会将这个拷贝转发到一系列辅助函数上，而这些辅助函数中大多数也是按值传递，这也就意味这更多的拷贝。  
+2. 第二个开销与被封装目标的大小有关。std::function实现采用了标准建议的小对象优化技术 (small object optimization)，以避免动态内存分配。通常，它们使用一个数据成员存储被包装函数对象的拷贝。但是，因为被包装目标的大小是在 std::function 构造时确定，被包装对象较大时(如函数对象)成员存储可能不足以容纳其拷贝。这时，将调用 new（除非自定义分配器）在堆上创建拷贝，只在数据成员中保存拷贝的指针。超出就分配堆存储的准确大小，依赖于具体平台和内存对齐。  
+为了解决上面的问题，应该避免使用拷贝和大封装目标，最直接的想法是引用代替拷贝。但是，这通常很难，因为我们有时需要 std::function 比它的原始被包装函数对象有更长的生存期  
+这是个老问题，类模板 std::reference_wrapper 包装一个对象的引用，并提供到被包装类型的自动类型转换，这使得 std::reference_wrapper 可用在很多需要被包装类型的地方。std::reference_wrapper 和引用的大小相同，即它很小。另外，有两个函数模板 std::ref 和 std::cref，分别用来简化非 const 和 const 的 std::reference_wrappers 的创建（就像用 std::make_pair 简化 std::pairs 的创建），下面我们看看它们是如何使用的:  
+
+{%highlight c++%}
+#include <iostream>
+#include <functional> //std::function需要的头文件
+#include <algorithm>
+#include <vector>
+
+int main()
+{
+    //std::reference_wrapper封装int内置类型
+    int number = 1;
+    std::reference_wrapper<int> rw(number);
+    std::cout << "Number:" << rw.get() << std::endl;
+
+    std::vector<int> vecInt;
+    vecInt.push_back(1);
+    vecInt.push_back(2);
+    vecInt.push_back(3);
+
+    //std::ref只能用于左值 使用下面一行代码直接使用std::ref引用lambda表达式目前是编译不错的
+    //所以先用auto func对象保存lambda表达式返回的闭包对象 再std::for_each再对func进行引用
+    auto func = [](int val){std::cout << val + 2 << std::endl;};
+    std::for_each(vecInt.begin(), vecInt.end(), std::ref(func));
+    //std::for_each(vecInt.begin(), vecInt.end(),
+            //std::ref( [](int val){std::cout << val + 2 << std::endl;} ));
+}
+{%endhighlight%}  
+
+## 五 std::bind ##
+### 1 引入std::bind ###
+说完std::function,那么不得不说下它的好基友std::bind，下面我们来看看如何使用std::bind来改进前面使用for_each的例子:  
+
+{%highlight c++%}
+#include <iostream>
+#include <functional>
+#include <algorithm>
+#include <vector>
+
+//普通函数
+int print_add(int value, int num)
+{
+    std::cout << value + num << std::endl;
+}
+
+int main()
+{
+    std::vector<int> vecInt;
+    vecInt.push_back(1);
+    vecInt.push_back(2);
+    vecInt.push_back(3);
+
+    
+    std::cout << "---------使用auto对象保存std::bind返回的对象------------" << std::endl;
+    auto func = std::bind(print_add, std::placeholders::_1, 222);
+    std::for_each(vecInt.begin(), vecInt.end(), func); 
+
+    std::cout << "---------直接将std::bind返回的对象用在std::for_each中------" << std::endl;
+    std::for_each(vecInt.begin(),
+                vecInt.end(),
+                std::bind(print_add, std::placeholders::_1, 222));
+
+    return 0;
+
+}
+{%endhighlight%}  
