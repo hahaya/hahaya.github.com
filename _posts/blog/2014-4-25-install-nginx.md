@@ -8,7 +8,7 @@ published: true
 ---
 
 ## Nginx目录结构 ##
-要学习Nginx源代码，首先得下载一份源代码，官方下载地址[](),这里我下载的Nginx版本为1.4.7，下载后解压，得到的目录结构如下:  
+要学习Nginx源代码，首先得下载一份源代码，官方下载地址[http://nginx.org/en/download.html](http://nginx.org/en/download.html),这里我下载的Nginx版本为1.4.7，下载后解压，得到的目录结构如下:  
 
         |---auto    (执行./configure命令时，所依赖的一些自动脚本)  
         |---conf    (Nginx需要的配置文件模板)  
