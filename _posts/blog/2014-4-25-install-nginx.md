@@ -1,6 +1,6 @@
 ---
 layout: post
-title: [Nginx源码分析] --- 编译、安装
+title: <Nginx源码分析> --- 编译、安装
 description: 很久没怎么学习，也没有写博客了，真是罪过。一直听别人说Nginx代码清晰、完美，一直想膜拜下Nginx代码的，但是一直都没有开始。这是病，得治～
 category: blog
 tags: Nginx
