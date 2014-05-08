@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 我想大声告诉你
-description:
+description: 我想大声告诉你
 category: blog
 tags: love
 published: true
@@ -11,4 +11,5 @@ published: true
 这几天我并没有联系你，我安静的想着发生的一切。这段时间自己也过得却是没心没肺的，也许你会觉得我不是太在意你，其实我是在意你的，只是我并没有很好的表达出来。也许你知道，我QQ空间很少更新。但是你不知道，你的QQ状态每一条我都有看，可是我并没有去回复，当然你QQ状态中表现出来的小情绪我想我也时能理解的。也许你并不知道，你送我的东西我十分珍惜，你送我的手机壳的包装我一直舍不得扔掉。  
 虽然我是一个木讷的程序员，但是代码也可以表现出浪漫，比如这个网站[http://lovecjz.free3v.net/](http://lovecjz.free3v.net/),虽然我不会做网页，但是我还是可以为你熬夜做出这个网页。我还可以在程序这样的代码:  
 
-![forever_love](/images/blog-article-images/blog/forever_love.jpg) 
+![forever_love](/images/blog-article-images/blog/forever_love.jpg)  
+
