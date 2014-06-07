@@ -12,7 +12,7 @@ Nginx内存分配的源码主要位于${NGX_ROOT}/src/os/unix/ngx_alloc{.h|.c}�
 
 ## 源码分析 ##
 `ngx_alloc.h`
-```cpp
+{%highlight c%}
 
 /*
  * Copyright (C) Igor Sysoev
@@ -78,7 +78,7 @@ extern ngx_uint_t  ngx_cacheline_size;  /* 缓存大小 */
 
 
 #endif /* _NGX_ALLOC_H_INCLUDED_ */
-```
+{%endhighlight%}
 
 `ngx_alloc.c`
 {%highlight c%}  
